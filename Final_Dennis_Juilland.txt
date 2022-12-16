@@ -1,0 +1,154 @@
+// Ejercicio 1
+// Dado el siguiente arreglo de objetos:
+
+let mascotas = [
+    {
+        nombre : "Firulais",
+        edad: 4
+    },
+    {
+        nombre : "Michifus",
+        edad: 2
+    },
+    {
+        nombre : "Azul",
+        edad: 7
+    },
+    {
+        nombre : "Morita",
+        edad: 5
+    },
+    {
+        nombre : "Pepito",
+        edad: 13
+    },
+]
+
+
+
+// Realizar una función que reciba por parámetro dicho arreglo  y retorne un nuevo array cargado con los objetos cuya edad 
+// sea menor o igual a 5.
+
+
+// TODO: En este metodo lo que se busca es pasarle un arreglo por parametro y retornar 
+// * un nuevo array con los que tengan la edad menor o igual a cinco basados con el array
+// * de tipo mascota.
+
+const arrayObjetosEdadMenorACinco = (array) => {
+
+    let arrayAux = [] // Creamos un array Auxiliar para almacenar el resultado y retornarlo
+
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].edad <= 5) {
+            arrayAux.push(array[i])
+        }
+        
+    }
+
+    return arrayAux;
+}
+
+let nuevoArrayMascotas = arrayObjetosEdadMenorACinco(mascotas); // ! Asignamos una variable para manejar el resultado
+
+console.log(nuevoArrayMascotas) // ! Imprimimos en consola que todo se encuentre de forma correcta
+
+// Ejercicio 2
+
+// Realizar una función que reciba por parámetro el arreglo de objetos del ejercicio 1 y un String. 
+// Esta función deberá ordenar los objetos mediante el algoritmo Bubble Sort según su año de  creación 
+// de forma ascendente o descendente según lo indique el string recibido por parámetro, teniendo en cuenta 
+// los siguientes criterios:
+// Si el String es “ASC” o “asc” encontes ordenar de menor a mayor
+// Si el String es “DESC” o “desc” entonces ordenar de mayor a menor
+
+
+//TODO: En este metodo debemos basarnos en el array que calculamos en el punto anterior, debemos utilizar el metodo bubble sort
+// * Aca es importante que nos piden pasar por parametro la forma en que quiere que lo ordene que seria ASC -> Para ascendente
+// * DESC para descendente.
+
+const ordernarAscendenteDescendentePorEdad = (array, string) => {
+    let aux = 0; // Utilizamos una variable extra para poder hacer el intercambio de posicion.
+
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length - 1 - i; j++) {
+            if (array[j].edad < array[j + 1].edad && string === "DESC") {
+                aux = array[j + 1].edad
+                array[j + 1].edad = array[j].edad
+                array[j].edad = aux
+            } else if (array[j].edad > array[j + 1].edad && string === "ASC") {
+                aux = array[j + 1].edad
+                array[j + 1].edad = array[j].edad
+                array[j].edad = aux
+            }
+
+        }
+
+    }
+
+    return array // retornamos el array de nuevoArrayMascotas ordenado de forma ascendente o descendente 
+
+}
+
+let ordenAscDesc = ordernarAscendenteDescendentePorEdad(nuevoArrayMascotas,"DESC") // Utilizamos una variable extra para almacenar el resultado
+
+
+
+console.log(ordenAscDesc) // ! Veriificamos que si este bien implementado el metodo
+
+
+
+// Ejercicio 3
+
+// Dada la matriz:
+
+let matriz = [
+    [5, 2, 2], // 0
+    [2, 5, 2], // 1
+    [4, 4, 5]  // 2
+];
+
+
+// Crear una función que reciba la matriz por parámetro y  retorne la suma de todos los valores de la columna 2
+
+//TODO: En este metodo lo que hacemos es sumar los valores de la columna dos dentro de la matriz
+// * Para poder lograr eso debemos recorrerlo hasta matriz.length y despues lo que se hace es con un solo for
+// * ir avanzando pero solo parados en la posicion de la columna dos.
+
+const sumValoresColumnaDos = (matriz) => {
+let acum = 0;
+    for (let i = 0; i < matriz.length; i++) {
+       acum += matriz[i][2]
+        
+    }
+
+    return acum
+}
+
+let result = sumValoresColumnaDos(matriz) //Alamacenamos el resultado del metodo
+
+console.log(result) // Lo imprimimos por cojnsola para verificar que si este bien
+
+
+// Crear una función que reciba la matriz por parámetro y retorne un nuevo array con todos los valores pares de la matriz.
+
+//TODO: En este metodo lo que se busca es retornar los valores pares de la matriz 
+// * Almacenandolos en un nuevo array.
+
+const valoresParesMatriz = (matriz) => {
+    let arrayAux = []
+        for (let i = 0; i < matriz.length; i++) {
+         for (let j = 0; j < matriz[i].length; j++) {
+            if (matriz[i][j] % 2 === 0) {
+            arrayAux.push(matriz[i][j])
+            }
+            
+         }
+            
+        }
+    
+        return arrayAux
+    }
+    
+    let result2 = valoresParesMatriz(matriz) //Alamacenamos el resultado del metodo
+    
+    console.log(result2) // Lo imprimimos por cojnsola para verificar que si este bien
